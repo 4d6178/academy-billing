@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcademyBillingTests", "AcademyBillingTests\AcademyBillingTests.vcxproj", "{4EA029EF-9338-4AD5-A766-A7239CD67812}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcademyBilling", "AcademyBilling\AcademyBilling.vcxproj", "{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EA029EF-9338-4AD5-A766-A7239CD67812}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4EA029EF-9338-4AD5-A766-A7239CD67812}.Debug|Win32.Build.0 = Debug|Win32
+		{4EA029EF-9338-4AD5-A766-A7239CD67812}.Release|Win32.ActiveCfg = Release|Win32
+		{4EA029EF-9338-4AD5-A766-A7239CD67812}.Release|Win32.Build.0 = Release|Win32
+		{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}.Debug|Win32.Build.0 = Debug|Win32
+		{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}.Release|Win32.ActiveCfg = Release|Win32
+		{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
