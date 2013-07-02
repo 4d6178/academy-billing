@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcademyBillingTests", "AcademyBillingTests\AcademyBillingTests.vcxproj", "{4EA029EF-9338-4AD5-A766-A7239CD67812}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE53BDDF-BD69-459F-84ED-D25617EAB0CF} = {CE53BDDF-BD69-459F-84ED-D25617EAB0CF}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AcademyBilling", "AcademyBilling\AcademyBilling.vcxproj", "{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}"
 EndProject
