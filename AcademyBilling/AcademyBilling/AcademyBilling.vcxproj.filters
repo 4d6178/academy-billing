@@ -27,6 +27,15 @@
     <ClInclude Include="SubscriberStorage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Call.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Refill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subscriber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BillingCalculator.cpp">
@@ -36,6 +45,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DefaultBillingRules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Call.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Refill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subscriber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

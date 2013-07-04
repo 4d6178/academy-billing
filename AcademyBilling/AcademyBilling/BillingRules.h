@@ -1,9 +1,11 @@
 #pragma once
-#include "Subscriber.h"
+//#include "Subscriber.h"
 #include "Call.h"
 
 namespace AcademyBilling
 {
+	class Subscriber;
+
     class BillingRules
     {
     public:

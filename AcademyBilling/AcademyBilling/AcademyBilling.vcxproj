@@ -13,13 +13,19 @@
   <ItemGroup>
     <ClInclude Include="BillingCalculator.h" />
     <ClInclude Include="BillingRules.h" />
+    <ClInclude Include="Call.h" />
     <ClInclude Include="DefaultBillingRules.h" />
+    <ClInclude Include="Refill.h" />
+    <ClInclude Include="Subscriber.h" />
     <ClInclude Include="SubscriberStorage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BillingCalculator.cpp" />
     <ClCompile Include="BillingRules.cpp" />
+    <ClCompile Include="Call.cpp" />
     <ClCompile Include="DefaultBillingRules.cpp" />
+    <ClCompile Include="Refill.cpp" />
+    <ClCompile Include="Subscriber.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}</ProjectGuid>
