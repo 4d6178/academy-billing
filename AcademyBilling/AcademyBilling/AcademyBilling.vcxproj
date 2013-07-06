@@ -14,12 +14,16 @@
     <ClInclude Include="BillingCalculator.h" />
     <ClInclude Include="BillingRules.h" />
     <ClInclude Include="DefaultBillingRules.h" />
+    <ClInclude Include="DefaultBillingRuleBlocks.h" />
     <ClInclude Include="SubscriberStorage.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BillingCalculator.cpp" />
     <ClCompile Include="BillingRules.cpp" />
     <ClCompile Include="DefaultBillingRules.cpp" />
+    <ClCompile Include="DefaultBillingRuleBlocks.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CE53BDDF-BD69-459F-84ED-D25617EAB0CF}</ProjectGuid>
