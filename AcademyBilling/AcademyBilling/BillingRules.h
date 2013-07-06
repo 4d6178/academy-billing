@@ -4,6 +4,8 @@
 
 namespace AcademyBilling
 {
+    class Subscriber;
+
     class BillingRules
     {
     public:

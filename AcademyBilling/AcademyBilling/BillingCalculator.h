@@ -14,10 +14,10 @@ namespace AcademyBilling
     public:
         BillingCalculator(void);
         ~BillingCalculator(void);
-        void setSubscrberStorage(std::shared_ptr<SubscriberStorage> subscriberStorage) const;
+        void setSubscrberStorage(std::shared_ptr<SubscriberStorage> subscriberStorage);
         //warning:call must be made after any other call, that has been already processed
         void chargeForSingleCall(const Call& call);
         //warning:all calls must be made after any other call, that has been already processed
-        void chargeForMultipleCalls(std::vector<Call>& call);
+        void chargeForMultipleCalls(const std::vector<Call>& calls);
     };
 }
