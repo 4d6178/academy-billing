@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib_json", "lib\jsoncpp-src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GTest", "GTest\GTest.vcxproj", "{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Demo", "Demo\Demo.vcxproj", "{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,10 +45,16 @@ Global
 		{B84F7231-16CE-41D8-8C08-7B523FF4225B}.Release|Win32.Build.0 = Release|Win32
 		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.Debug|Win32.Build.0 = Debug|Win32
+		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.dummy|Win32.ActiveCfg = Debug|Win32
 		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.dummy|Win32.Build.0 = dummy|Win32
 		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.Release|Win32.ActiveCfg = Release|Win32
-		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.Release|Win32.ActiveCfg = Release|Win32
 		{D1F31DFD-CC03-4BF5-A407-3B17E8D35AA6}.Release|Win32.Build.0 = Release|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.Debug|Win32.Build.0 = Debug|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.dummy|Win32.ActiveCfg = Debug|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.dummy|Win32.Build.0 = Debug|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.Release|Win32.ActiveCfg = Release|Win32
+		{A61258F6-7E60-4A8F-ADDA-AF881D0DB422}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
