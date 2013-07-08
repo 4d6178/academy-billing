@@ -3,6 +3,7 @@
 #include <DefaultBillingRules.h>
 #include <Call.h>
 #include <Refill.h>
+#include <Subscriber.h>
 
 namespace AcademyBillingTesting
 {
