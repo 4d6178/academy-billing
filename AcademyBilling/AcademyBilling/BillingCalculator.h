@@ -7,6 +7,9 @@
 
 namespace AcademyBilling
 {
+    class SubscriberStorage;
+    class Call;
+
     class BillingCalculator
     {
     private:

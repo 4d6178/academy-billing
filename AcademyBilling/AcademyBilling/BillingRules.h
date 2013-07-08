@@ -5,6 +5,7 @@
 namespace AcademyBilling
 {
     class Subscriber;
+    class Call;
 
     class BillingRules
     {

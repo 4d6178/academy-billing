@@ -3,6 +3,8 @@
 #include <exception>
 #include <assert.h>
 
+#include "BillingRules.h"
+
 namespace AcademyBilling
 {
     BillingCalculator::BillingCalculator(void)
