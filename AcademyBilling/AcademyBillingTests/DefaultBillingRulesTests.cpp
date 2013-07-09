@@ -226,4 +226,31 @@ namespace AcademyBillingTesting
         balance -= (33 + 6 * 95);
         ASSERT_EQ(balance, subscriber.getBalance());
     }
+
+    TEST_F(DefaultBillingRulesTests, default_billing_rules_negative_balance)
+    {
+        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+
+        // This day is Monday.
+        tm timeTm;
+        timeTm.tm_year=2011-1900;
+        timeTm.tm_mon = 06;
+        timeTm.tm_mday = 17;
+        timeTm.tm_hour = 10;
+        timeTm.tm_min = 10;
+        timeTm.tm_sec = 20;
+        timeTm.tm_isdst = 0;
+        
+        time_t timeT = mktime(&timeTm);
+
+        int balance = 500;
+        AcademyBilling::Subscriber subscriber("+38(050)0112233", balance, rules.get(), AcademyBilling::Refill(4000, timeT));
+        
+        timeT += 1000;
+
+        // 5 minutes to other network.
+        AcademyBilling::Call call1("+38(050)0112233", "+38(096)0112233", timeT, 5 * 60);
+        // 33 - for connection, 5 * 95 - 5 minutes = 508, balance becomes negative.
+        ASSERT_THROW(rules->chargeForCall(call1, subscriber), AcademyBilling::BalanceIsEmpty);
+    }
 }
