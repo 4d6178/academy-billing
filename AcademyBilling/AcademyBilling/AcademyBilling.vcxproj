@@ -17,6 +17,7 @@
     <ClInclude Include="DateParser.h" />
     <ClInclude Include="DefaultBillingRules.h" />
     <ClInclude Include="DefaultBillingRuleBlocks.h" />
+    <ClInclude Include="JsonSubscriberStorage.h" />
     <ClInclude Include="Refill.h" />
     <ClInclude Include="Subscriber.h" />
     <ClInclude Include="SubscriberStorage.h" />
@@ -29,6 +30,7 @@
     <ClCompile Include="DateParser.cpp" />
     <ClCompile Include="DefaultBillingRules.cpp" />
     <ClCompile Include="DefaultBillingRuleBlocks.cpp" />
+    <ClCompile Include="JsonSubscriberStorage.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="Refill.cpp" />
     <ClCompile Include="Subscriber.cpp" />
