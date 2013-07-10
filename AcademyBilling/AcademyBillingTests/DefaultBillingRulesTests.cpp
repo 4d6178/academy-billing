@@ -7,21 +7,30 @@
 
 namespace AcademyBillingTesting
 {
-    TEST_F(DefaultBillingRulesTests, default_billing_rules_weekend_calls)
+    // Days of week should be from 0 to 6, where 0 is Sunday.
+    time_t timeByDayOfWeek(int weekDay)
     {
-        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+        assert(weekDay >= 0 && weekDay <= 6 && "Week day out of range");
 
-        // This day is Saturday.
+        // This is Sunday, when weekDay == 0.
         tm timeTm;
-        timeTm.tm_year=2013-1900;
+        timeTm.tm_year=2013 - 1900;
         timeTm.tm_mon = 00;
-        timeTm.tm_mday = 05;
+        timeTm.tm_mday = 06 + weekDay;
         timeTm.tm_hour = 00;
         timeTm.tm_min = 00;
         timeTm.tm_sec = 00;
         timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+
+        return mktime(&timeTm);
+    }
+
+    TEST_F(DefaultBillingRulesTests, default_billing_rules_weekend_calls)
+    {
+        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+
+        // Saturday.      
+        time_t timeT = timeByDayOfWeek(6);
 
         int balance = 5000;
         AcademyBilling::Subscriber subscriber("+38(095)0112233", balance, rules.get(), AcademyBilling::Refill(10,timeT-100)); 
@@ -72,17 +81,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Tuesday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 00;
-        timeTm.tm_mday = 01;
-        timeTm.tm_hour = 00;
-        timeTm.tm_min = 00;
-        timeTm.tm_sec = 00;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Tuesday.
+        time_t timeT = timeByDayOfWeek(2);
 
         int balance = 5000;
         AcademyBilling::Subscriber subscriber("+38(095)0112233", balance, rules.get(), AcademyBilling::Refill(10, timeT-100)); 
@@ -133,17 +133,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Tuesday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 00;
-        timeTm.tm_mday = 01;
-        timeTm.tm_hour = 10;
-        timeTm.tm_min = 10;
-        timeTm.tm_sec = 20;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Tuesday. 
+        time_t timeT = timeByDayOfWeek(2);
 
         int balance = 2000;
         int secondsIn30Days = 30 * 24 * 60 * 60;
@@ -183,17 +174,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Friday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 04;
-        timeTm.tm_mday = 03;
-        timeTm.tm_hour = 10;
-        timeTm.tm_min = 10;
-        timeTm.tm_sec = 20;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Friday.
+        time_t timeT = timeByDayOfWeek(5);
 
         int balance = 4000;
         AcademyBilling::Subscriber subscriber("+38(050)0112233", balance, rules.get(), AcademyBilling::Refill(4000, timeT));
@@ -231,17 +213,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Monday.
-        tm timeTm;
-        timeTm.tm_year=2011-1900;
-        timeTm.tm_mon = 06;
-        timeTm.tm_mday = 17;
-        timeTm.tm_hour = 10;
-        timeTm.tm_min = 10;
-        timeTm.tm_sec = 20;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Monday.
+        time_t timeT = timeByDayOfWeek(1);
 
         int balance = 500;
         AcademyBilling::Subscriber subscriber("+38(050)0112233", balance, rules.get(), AcademyBilling::Refill(4000, timeT));
