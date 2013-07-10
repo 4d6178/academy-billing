@@ -14,6 +14,7 @@
     <ClInclude Include="BillingCalculator.h" />
     <ClInclude Include="BillingRules.h" />
     <ClInclude Include="Call.h" />
+    <ClInclude Include="DateParser.h" />
     <ClInclude Include="DefaultBillingRules.h" />
     <ClInclude Include="DefaultBillingRuleBlocks.h" />
     <ClInclude Include="Refill.h" />
@@ -25,6 +26,7 @@
     <ClCompile Include="BillingCalculator.cpp" />
     <ClCompile Include="BillingRules.cpp" />
     <ClCompile Include="Call.cpp" />
+    <ClCompile Include="DateParser.cpp" />
     <ClCompile Include="DefaultBillingRules.cpp" />
     <ClCompile Include="DefaultBillingRuleBlocks.cpp" />
     <ClCompile Include="Utility.cpp" />
