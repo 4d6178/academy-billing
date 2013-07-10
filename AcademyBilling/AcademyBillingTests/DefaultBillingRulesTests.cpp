@@ -7,8 +7,7 @@
 
 namespace AcademyBillingTesting
 {
-    // Days of week should be from 0 to 6, where 0 is Sunday.
-    time_t timeByDayOfWeek(int weekDay)
+    time_t DefaultBillingRulesTests::timeByDayOfWeek(int weekDay)
     {
         assert(weekDay >= 0 && weekDay <= 6 && "Week day out of range");
 
