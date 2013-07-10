@@ -7,21 +7,29 @@
 
 namespace AcademyBillingTesting
 {
-    TEST_F(DefaultBillingRulesTests, default_billing_rules_weekend_calls)
+    time_t DefaultBillingRulesTests::timeByDayOfWeek(int weekDay)
     {
-        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+        assert(weekDay >= 0 && weekDay <= 6 && "Week day out of range");
 
-        // This day is Saturday.
+        // This is Sunday, when weekDay == 0.
         tm timeTm;
-        timeTm.tm_year=2013-1900;
+        timeTm.tm_year=2013 - 1900;
         timeTm.tm_mon = 00;
-        timeTm.tm_mday = 05;
+        timeTm.tm_mday = 06 + weekDay;
         timeTm.tm_hour = 00;
         timeTm.tm_min = 00;
         timeTm.tm_sec = 00;
         timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+
+        return mktime(&timeTm);
+    }
+
+    TEST_F(DefaultBillingRulesTests, default_billing_rules_weekend_calls)
+    {
+        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+
+        // Saturday.      
+        time_t timeT = timeByDayOfWeek(6);
 
         int balance = 5000;
         AcademyBilling::Subscriber subscriber("+38(095)0112233", balance, rules.get(), AcademyBilling::Refill(10,timeT-100)); 
@@ -72,17 +80,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Tuesday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 00;
-        timeTm.tm_mday = 01;
-        timeTm.tm_hour = 00;
-        timeTm.tm_min = 00;
-        timeTm.tm_sec = 00;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Tuesday.
+        time_t timeT = timeByDayOfWeek(2);
 
         int balance = 5000;
         AcademyBilling::Subscriber subscriber("+38(095)0112233", balance, rules.get(), AcademyBilling::Refill(10, timeT-100)); 
@@ -133,17 +132,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Tuesday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 00;
-        timeTm.tm_mday = 01;
-        timeTm.tm_hour = 10;
-        timeTm.tm_min = 10;
-        timeTm.tm_sec = 20;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Tuesday. 
+        time_t timeT = timeByDayOfWeek(2);
 
         int balance = 2000;
         int secondsIn30Days = 30 * 24 * 60 * 60;
@@ -183,17 +173,8 @@ namespace AcademyBillingTesting
     {
         std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
 
-        // This day is Friday.
-        tm timeTm;
-        timeTm.tm_year=2013-1900;
-        timeTm.tm_mon = 04;
-        timeTm.tm_mday = 03;
-        timeTm.tm_hour = 10;
-        timeTm.tm_min = 10;
-        timeTm.tm_sec = 20;
-        timeTm.tm_isdst = 0;
-        
-        time_t timeT = mktime(&timeTm);
+        // Friday.
+        time_t timeT = timeByDayOfWeek(5);
 
         int balance = 4000;
         AcademyBilling::Subscriber subscriber("+38(050)0112233", balance, rules.get(), AcademyBilling::Refill(4000, timeT));
@@ -225,5 +206,23 @@ namespace AcademyBillingTesting
         // 33 - for connection, 6 * 95 - 6 minutes.
         balance -= (33 + 6 * 95);
         ASSERT_EQ(balance, subscriber.getBalance());
+    }
+
+    TEST_F(DefaultBillingRulesTests, default_billing_rules_negative_balance)
+    {
+        std::auto_ptr<AcademyBilling::DefaultBillingRules> rules(new AcademyBilling::DefaultBillingRules());
+
+        // Monday.
+        time_t timeT = timeByDayOfWeek(1);
+
+        int balance = 500;
+        AcademyBilling::Subscriber subscriber("+38(050)0112233", balance, rules.get(), AcademyBilling::Refill(4000, timeT));
+        
+        timeT += 1000;
+
+        // 5 minutes to other network.
+        AcademyBilling::Call call1("+38(050)0112233", "+38(096)0112233", timeT, 5 * 60);
+        // 33 - for connection, 5 * 95 - 5 minutes = 508, balance becomes negative.
+        ASSERT_THROW(rules->chargeForCall(call1, subscriber), AcademyBilling::BalanceIsEmpty);
     }
 }
