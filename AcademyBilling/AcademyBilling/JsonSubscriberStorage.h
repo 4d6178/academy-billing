@@ -13,7 +13,7 @@ namespace AcademyBilling
     public:
         JsonSubscriberStorage(const std::string &jsonFilePath, BillingRules *rules);
         void addSubscriber(const Subscriber &subscriber);
-        void getAllSubscribers(std::vector<Subscriber> &subscribers);
+        const std::vector<Subscriber>& getAllSubscribers() const;
         Subscriber* findSubscriber(const std::string &number);
         ~JsonSubscriberStorage(void);
 

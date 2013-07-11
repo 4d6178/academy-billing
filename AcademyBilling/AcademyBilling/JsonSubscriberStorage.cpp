@@ -38,9 +38,9 @@ namespace AcademyBilling
         subscribers.push_back(subscriber);
     }
 
-    void JsonSubscriberStorage::getAllSubscribers(std::vector<Subscriber> &subscribers)
+    const std::vector<Subscriber>& JsonSubscriberStorage::getAllSubscribers() const
     {
-        subscribers = this->subscribers;
+        return subscribers;
     }
 
     Subscriber* JsonSubscriberStorage::findSubscriber(const std::string &number)
