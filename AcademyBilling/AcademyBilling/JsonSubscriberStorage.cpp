@@ -27,6 +27,9 @@ namespace AcademyBilling
             throw std::runtime_error("File " + jsonFilePath + " is bad formatted");
         }
         jsonSubscribersArray = root["subscribers"];
+        if (jsonSubscribersArray.isNull() || !jsonSubscribersArray.isArray()) {
+            throw std::runtime_error("Field \"subscribers\" not found or not an array");
+        }
         this->loadSubscribers();
     }
 
@@ -57,8 +60,17 @@ namespace AcademyBilling
     void JsonSubscriberStorage::loadSubscribers()
     {
         for (size_t i = 0; i < jsonSubscribersArray.size(); ++i) {
-            std::string number = jsonSubscribersArray[i].get("number", "").asString();
-            size_t balance = jsonSubscribersArray[i].get("balance", "0").asUInt();
+            Json::Value jsonNumber = jsonSubscribersArray[i].get("number", "");
+            if (jsonNumber.isNull()) {
+                throw std::runtime_error("Field \"number\" not found");
+            }
+            Json::Value jsonBalance = jsonSubscribersArray[i].get("balance", "0");
+            if (jsonBalance.isNull()) {
+                throw std::runtime_error("Field \"balance\" not found");
+            }
+
+            std::string number = jsonNumber.asString();
+            size_t balance = jsonBalance.asUInt();
             Refill refill = this->getFirstRefill(i);
             Subscriber subscriber(number, balance, rules, refill);
             subscribers.push_back(subscriber);
@@ -67,14 +79,28 @@ namespace AcademyBilling
 
     Refill JsonSubscriberStorage::getFirstRefill(size_t subscriberIndex) const
     {
+        Json::Value jsonEventsArray = jsonSubscribersArray[subscriberIndex].get("events", "");
+        if (jsonEventsArray.isNull() || !jsonEventsArray.isArray()) {
+            throw std::runtime_error("Field \"events\" not found or not an array");
+        }
+
         const size_t firstRefillIndex = 0;
-        Json::Value jsonFirstRefill = jsonSubscribersArray[subscriberIndex].get("events", "")[firstRefillIndex];
-        if (jsonFirstRefill.get("type", "").asString() != "Refill") {
+        Json::Value jsonFirstRefill = jsonEventsArray[firstRefillIndex];
+        if (jsonFirstRefill.isNull() || jsonFirstRefill.get("type", "").asString() != "Refill") {
             throw std::runtime_error("First event should be a refill");
         }
 
-        size_t firstRefillValue = jsonFirstRefill.get("value", "0").asUInt();
-        std::string firstRefillDate = jsonFirstRefill.get("date", "").asString();
+        Json::Value jsonFirstRefillValue = jsonFirstRefill.get("value", "0");
+        if (jsonFirstRefillValue.isNull()) {
+            throw std::runtime_error("Field \"value\" not found");
+        }
+        Json::Value jsonFirstRefillDate = jsonFirstRefill.get("date", "");
+        if (jsonFirstRefillDate.isNull()) {
+            throw std::runtime_error("Field \"date\" not found");
+        }
+
+        size_t firstRefillValue = jsonFirstRefillValue.asUInt();
+        std::string firstRefillDate = jsonFirstRefillDate.asString();
         DateParser dateParser(firstRefillDate);
         Refill refill(firstRefillValue, dateParser.parseDate());
         return refill;
