@@ -4,6 +4,7 @@
         {
             "number" : "+38(095)1112233",
             "balance" : 1250,
+            "tariff" : "Default",
             
             "events" :
             [
@@ -48,6 +49,7 @@
         {
             "number" : "+38(099)3332211",
             "balance" : 4221,
+            "tariff" : "Default",
 
             "events" :
             [

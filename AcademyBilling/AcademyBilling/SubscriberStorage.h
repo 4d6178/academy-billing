@@ -1,6 +1,7 @@
 #pragma once
-#include"Subscriber.h"
-#include<vector>
+#include <vector>
+
+#include "Subscriber.h"
 
 namespace AcademyBilling
 {
@@ -8,9 +9,8 @@ namespace AcademyBilling
     class SubscriberStorage
     {
     public:
-        virtual ~SubscriberStorage(void);
-        virtual void addSubscriber(const Subscriber &subscriber);
-        virtual void getAllSubscribers(std::vector<Subscriber> &subscriber);
-        virtual Subscriber* findSubscriber(std::string number);
+        virtual void addSubscriber(const Subscriber &subscriber) = 0;
+        virtual const std::vector<Subscriber>& getAllSubscribers() const = 0;
+        virtual Subscriber* findSubscriber(const std::string &number) = 0;
     };
 }
