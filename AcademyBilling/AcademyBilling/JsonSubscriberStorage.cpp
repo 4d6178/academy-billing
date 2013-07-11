@@ -10,8 +10,8 @@
 
 namespace AcademyBilling
 {
-    JsonSubscriberStorage::JsonSubscriberStorage(const std::string &jsonFilePath, BillingRules *rules) :
-        rules(rules)
+    JsonSubscriberStorage::JsonSubscriberStorage(const std::string &jsonFilePath, BillingRulesProvider &provider) :
+        rulesProvider(&provider)
     {
         std::ifstream jsonFile(jsonFilePath);
         if (!jsonFile) {
@@ -68,10 +68,15 @@ namespace AcademyBilling
             if (jsonBalance.isNull()) {
                 throw std::runtime_error("Field \"balance\" not found");
             }
+            Json::Value jsonTariff = jsonSubscribersArray[i].get("tariff", "");
+            if (jsonTariff.isNull()) {
+                throw std::runtime_error("Field \"tariff\" not found");
+            }
 
             std::string number = jsonNumber.asString();
             size_t balance = jsonBalance.asUInt();
             Refill refill = this->getFirstRefill(i);
+            BillingRules *rules = rulesProvider->getRules(jsonTariff.asString());
             Subscriber subscriber(number, balance, rules, refill);
             subscribers.push_back(subscriber);
         }

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="BillingCalculator.h" />
     <ClInclude Include="BillingRules.h" />
+    <ClInclude Include="BillingRulesProvider.h" />
     <ClInclude Include="Call.h" />
     <ClInclude Include="DateParser.h" />
     <ClInclude Include="DefaultBillingRules.h" />
@@ -26,6 +27,7 @@
   <ItemGroup>
     <ClCompile Include="BillingCalculator.cpp" />
     <ClCompile Include="BillingRules.cpp" />
+    <ClCompile Include="BillingRulesProvider.cpp" />
     <ClCompile Include="Call.cpp" />
     <ClCompile Include="DateParser.cpp" />
     <ClCompile Include="DefaultBillingRules.cpp" />

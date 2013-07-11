@@ -4,14 +4,14 @@
 #include <json/json.h>
 
 #include "SubscriberStorage.h"
-#include "BillingRules.h"
+#include "BillingRulesProvider.h"
 
 namespace AcademyBilling
 {
     class JsonSubscriberStorage : public SubscriberStorage
     {
     public:
-        JsonSubscriberStorage(const std::string &jsonFilePath, BillingRules *rules);
+        JsonSubscriberStorage(const std::string &jsonFilePath, BillingRulesProvider &provider);
         void addSubscriber(const Subscriber &subscriber);
         const std::vector<Subscriber>& getAllSubscribers() const;
         Subscriber* findSubscriber(const std::string &number);
@@ -24,7 +24,7 @@ namespace AcademyBilling
     private:
         Json::Value jsonSubscribersArray;
         std::vector<Subscriber> subscribers;
-        BillingRules *rules;
+        BillingRulesProvider *rulesProvider;
     };
 }
 
