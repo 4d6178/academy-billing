@@ -6,16 +6,12 @@
 
 namespace AcademyBilling
 {
-    DateParser::DateParser(const std::string &date)
+    const time_t DateParser::parseDate(const std::string &date)
     {
         if (!checkDateFormat(date)) {
             throw std::runtime_error("Date should be formatted as \"dd.mm.yyyy HH:mm:ss\"");
         }
-        this->date = date;
-    }
 
-    const time_t DateParser::parseDate() const
-    {
         std::stringstream dateStream(date);
         tm timeInfo;
         char delimeter;
@@ -28,18 +24,18 @@ namespace AcademyBilling
 
         timeInfo.tm_mon -= 1;
         timeInfo.tm_year -= 1900;
-        this->checkDateLimits(timeInfo);
+        checkDateLimits(timeInfo);
 
         return mktime(&timeInfo);
     }
 
-    bool DateParser::checkDateFormat(const std::string &date) const
+    bool DateParser::checkDateFormat(const std::string &date)
     {
         std::regex dateRegex("\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}");
         return std::regex_match(date, dateRegex);
     }
 
-    bool DateParser::checkDateLimits(const tm &timeInfo) const
+    bool DateParser::checkDateLimits(const tm &timeInfo)
     {
         bool daysOutOfRange = (timeInfo.tm_mday < 1 || timeInfo.tm_mday > 31);
         bool monthsOutOfRange = (timeInfo.tm_mon < 0 || timeInfo.tm_mon > 11);
@@ -48,7 +44,7 @@ namespace AcademyBilling
         bool minutesOutOfRange = (timeInfo.tm_min < 0 || timeInfo.tm_min > 59);
         bool secondsOutOfRange = (timeInfo.tm_sec < 0 || timeInfo.tm_sec > 59);
 
-        if(daysOutOfRange || monthsOutOfRange || yearsOutOfRange
+        if (daysOutOfRange || monthsOutOfRange || yearsOutOfRange
         || hoursOutOfRange || minutesOutOfRange || secondsOutOfRange) {
             throw std::out_of_range("Date is out of range");
         }

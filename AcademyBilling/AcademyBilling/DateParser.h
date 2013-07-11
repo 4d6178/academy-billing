@@ -8,13 +8,9 @@ namespace AcademyBilling
     class DateParser
     {
     public:
-        DateParser(const std::string &date);
-        const time_t parseDate() const;
+        static const time_t parseDate(const std::string &date);
     private:
-        bool checkDateFormat(const std::string &date) const;
-        bool checkDateLimits(const tm &timeInfo) const;
-
-    private:
-        std::string date;
+        static bool checkDateFormat(const std::string &date);
+        static bool checkDateLimits(const tm &timeInfo);
     };
 }

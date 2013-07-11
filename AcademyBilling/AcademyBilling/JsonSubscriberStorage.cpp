@@ -106,8 +106,7 @@ namespace AcademyBilling
 
         size_t firstRefillValue = jsonFirstRefillValue.asUInt();
         std::string firstRefillDate = jsonFirstRefillDate.asString();
-        DateParser dateParser(firstRefillDate);
-        Refill refill(firstRefillValue, dateParser.parseDate());
+        Refill refill(firstRefillValue, DateParser::parseDate(firstRefillDate));
         return refill;
     }
 }
