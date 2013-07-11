@@ -1,0 +1,19 @@
+{
+    "subscribers" :
+    [
+       {
+            "number" : "+38(095)1112233",
+            balance : 1250,
+            "tariff" : "Default",
+            
+            "events" :
+            [
+                {
+                    "type" : "Refill",
+                    "date" : "12.05.2013 11:00:07",
+                    "value" :: 3000
+                },
+            ]
+        }
+    ]
+}
